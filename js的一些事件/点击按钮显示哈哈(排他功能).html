@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p {
+            width: 200px;
+            height: 200px;
+            border-bottom: 2px solid red;
+            display: inline-block;
+
+        }
+    </style>
+</head>
+<body>
+<input type='button' value="点我">
+<p>我是p元素</p>
+<p>我是p元素</p>
+<p>我是p元素</p>
+<p>我是p元素</p>
+<p>我是p元素</p>
+<p>我是p元素</p>
+
+<!--点击任意一个p标签 文本内容变成哈哈 -->
+
+<script>
+    window.onload = function () {
+        var input = document.getElementsByTagName('input')[0];
+        var myP = document.getElementsByTagName('p');
+
+
+
+            /*onmouseover 鼠标滑入  onmouseout   滑出  onmousemove移动 */
+
+              for(var i = 0 ;i<myP.length;i++){
+                  myP[i].onclick = function () {
+                     /*先循环把所有元素设置成初始状态*/
+                   for(var j = 0 ;j<myP.length ;j++){
+                       myP[j].innerHTML = '我是p元素';
+                       myP[j].style.color = 'black';
+
+                   }
+                   /*当前你点击的对象设置样式*/
+                   this.innerHTML = '哈哈';
+                   this.style.color = 'red';
+
+                  }
+
+
+
+              }
+
+
+
+
+
+
+
+    }
+</script>
+</body>
+</html>

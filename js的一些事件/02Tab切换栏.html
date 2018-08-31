@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .box {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        .hd {
+            height: 45px;
+        }
+
+        .hd span {
+            display: inline-block;
+            width: 90px;
+            background-color: pink;
+            line-height: 45px;
+            text-align: center;
+            cursor: pointer;
+        }
+         /*样式on*/
+        .hd span.on {
+            background-color: orangered;
+        }
+
+        .bd li {
+            height: 255px;
+            color: antiquewhite;
+            font-size: 30px;
+            text-align: center;
+            line-height: 255px;
+            background-color: purple;
+            display: none;
+        }
+
+        .bd li.current {
+            /*显示*/
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+<div class="box" id="box">
+    <div class="hd">
+        <span class="on">体育</span>
+        <span>娱乐</span>
+        <span>新闻</span>
+        <span>综合</span>
+    </div>
+    <div class="bd">
+        <ul>
+            <li class="current">我是体育模块</li>
+            <li>我是娱乐模块</li>
+            <li>我是新闻模块</li>
+            <li>我是综合模块</li>
+        </ul>
+    </div>
+</div>
+
+
+<script>
+
+    /*先获取元素*/
+    var hd = document.getElementsByClassName('hd')[0];
+    var bd = document.getElementsByClassName('bd')[0];
+    var hd_spans = hd.getElementsByTagName('span');
+    var bd_Lis = bd.getElementsByTagName('li');
+
+    for(var i =0;i<hd_spans.length ;i++){
+        hd_spans[i].setAttribute('index',i);
+        hd_spans[i].onclick = function () {
+            /*排他  把全部样式 消除 给当前点击的对象加上*/
+
+            for(var j = 0 ;j<hd_spans.length ;j++){
+                hd_spans[j].classList.remove('on');
+            }
+            /*给当前用户点击的小tab添加背景色样式*/
+            this.classList.add('on');
+           var cuuer_index = this.getAttribute('index');
+            for(var j = 0 ;j<bd_Lis.length ;j++){
+                bd_Lis[j].classList.remove('current');
+            }
+
+           bd_Lis[cuuer_index].classList.add('current');
+
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>美女相册</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body {
+            font-family: "Helvetica", "Arial", serif;
+            color: #333;
+            background-color: #ccc;
+            margin: 1em 10%;
+        }
+
+        h1 {
+            color: #333;
+            background-color: transparent;
+        }
+
+        a {
+            color: #c60;
+            background-color: transparent;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            float: left;
+            padding: 1em;
+            list-style: none;
+        }
+
+        #imagegallery {
+
+            list-style: none;
+        }
+
+        #imagegallery li {
+            margin: 0px 20px 20px 0px;
+            padding: 0px;
+            display: inline;
+        }
+
+        #imagegallery li a img {
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+
+
+<select name="" id="city">
+    <option value="">请选择</option>
+    <option value="a">上海</option>
+    <option value="chengdu" >成都</option>
+    <option value="a">叙利亚</option>
+    <option value="a">韩国</option>
+    <option value="a">日本</option>
+    <option value="a">菲律宾</option>
+</select>
+
+<h2>
+    美女画廊
+</h2>
+
+<ul id="imagegallery">
+    <li><a href="images/1.jpg" title="美女A">
+        <img src="images/1-small.jpg" width="100" alt="美女1"/>
+    </a></li>
+    <li><a href="images/2.jpg" title="美女B">
+        <img src="images/2-small.jpg" width="100" alt="美女2"/>
+    </a></li>
+    <li><a href="images/3.jpg" title="美女C">
+        <img src="images/3-small.jpg" width="100" alt="美女3"/>
+    </a></li>
+    <li><a href="images/4.jpg" title="美女D">
+        <img src="images/4-small.jpg" width="100" alt="美女4"/>
+    </a></li>
+</ul>
+
+
+<div style="clear:both"></div>
+<!--显示大图的-->
+<img id="image" src="images/placeholder.png" alt="" width="450"/>
+<p id="des">选择一个图片</p>
+<script>
+    /*获取小图片*/
+   /* var smallImgs = document.getElementsByTagName('img');*/
+    var Myas = document.getElementsByTagName('a');
+    /*获取默认图片对象 显示大图的区域*/
+    var image = document.getElementById('image');
+    for(var i = 0; i<Myas.length ;i++){
+       Myas[i].onclick = function () {
+       image.src =  this.href;
+       /*阻止超链接的跳转*/
+           return false;
+        }
+
+    }
+
+  var city = document.getElementById('city')  ;
+    var cityOptions = city.getElementsByTagName('option');
+    for(var i =0;i<cityOptions.length ;i++){
+     /*   console.log(cityOptions[i].value)*/
+        if(cityOptions[i].value =='chengdu'){
+            console.log('success');
+
+            cityOptions[i].selected = true ;
+        }
+
+    }
+
+
+
+</script>
+
+</body>
+</html>
+</body>
+</html>

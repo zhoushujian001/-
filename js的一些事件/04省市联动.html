@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省市联动</title>
+</head>
+<body>
+<!--省份-->
+<select name="pro" id="pro" >
+    <option value="0">北京</option>
+    <option value="1">河北</option>
+    <option value="2">河南</option>
+    <option value="3">山西</option>
+
+</select>
+<!--市-->
+<select name="city" id="city">
+    <!--接收用户发来的省的标号 （value）接收value标号值 动态创建市的选项 -->
+
+
+
+</select>
+
+<script>
+window.onload = function () {
+
+
+    var pro = document.getElementById('pro');
+    var city = document.getElementById('city');
+    var cities = new Array(5);
+    /*北京*/
+    cities[0] = ['房山区','大兴区','丰台区','顺序','昌平','朝阳','海淀'];  //cities[0][1]
+    cities[1] = ['石家庄','邯郸','保定','廊坊','唐山'];
+    cities[2] = ['郑州','驻马店','洛阳','开封','平顶山'];
+    cities[3] = ['太原','大同','阳泉','朔州','长治'];
+
+    /*初始化函数   默认填充第一个省市*/
+    function init() {
+
+      var init_opi =  document.createElement('option');
+        var init_opiText = document.createTextNode( cities[0][0]);
+       init_opi.appendChild(init_opiText);
+        city.appendChild(init_opi);
+
+    }
+    init();
+
+   /* var city = */
+    /*判断用户是否修改了省 一修改就执行函数里的代码*/
+    pro.onchange = function () {
+        /*点击完毕以后清空第二个市的选择框*/
+        city.options.length = 0;
+        var index = this.value; //2
+        console.log(index);  //2
+        /*循环去遍历省*/
+        for(var i = 0 ;i<cities.length;i++){
+            if(index == i){
+                /*找到了省底下的市区  循环的创建市的option选项*/
+                for(var j = 0; j < cities[i].length;j++){
+                    /*先创建optinon标签*/
+                   var opi =  document.createElement('option');
+                   var opiText = document.createTextNode(cities[i][j]);
+                   opi.appendChild(opiText);
+                   city.appendChild(opi);
+
+
+
+
+                }
+
+
+            }
+
+
+
+
+
+        }
+
+        
+    }
+
+}
+
+</script>
+</body>
+</html>
