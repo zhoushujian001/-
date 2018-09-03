@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        img {
+            display: block;
+        }
+        #small_box {
+            width:300px ;
+            height:200px ;
+            margin-top: 100px;
+            position: relative;
+            float: left;
+            margin-right: 100px;
+
+
+        }
+        #small_img {
+            width: 300px;
+            height: 200px;
+
+        }
+        /*阴影的盒子*/
+        #move {
+            width: 100px;
+            height: 100px;
+            background: rgba(255,0,100,.3);/*//opacity*/
+            position: absolute;
+            left: 0;
+            top:0;
+            display: none;
+
+      }
+        #big_box {
+            float: left;
+            width: 600px;
+            height: 500px;
+            position: relative;
+            display: none;
+            border: 2px solid red;
+            overflow: hidden;
+
+        }
+        #big_img {
+          /*  width: 600px;
+            height: 500px;*/
+            position: absolute;
+            left: 0;
+            top:0;
+
+        }
+    </style>
+</head>
+<body>
+
+<!---->
+<div id="small_box">
+    <img src="images/2-small.jpg" alt="" id="small_img">
+    <div id="move"></div>
+</div>
+
+<div id="big_box">
+
+    <img src="images/2.jpg" alt="" id="big_img">
+</div>
+<script>
+window.onload = function () {
+    /*选择一个   多个元素document.querySelectorAll('img')*/
+   var  small_box = document.querySelector('#small_box');
+   var  big_box = document.querySelector('#big_box');
+   var  move = document.querySelector('#move');
+   var  big_img = document.querySelector('#big_img');
+   var  small_img = document.querySelector('#small_img');
+
+  /* console.log(small_box);*/
+
+  /*鼠标移入显示元素  鼠标移除隐藏*/
+
+  /*阴影层随着鼠标移动    */
+
+
+  small_box.onmousemove = function (event) {
+      /*设置样式为十字架*/
+      this.style.cursor = 'move';
+      var event = event || window.event;
+
+
+
+
+
+    /*new_left :小阴影块距离父亲的距离  this.offsetLeft */
+       var new_left = event.clientX-this.offsetLeft-move.offsetWidth /2;
+       var new_top = event.clientY-this.offsetTop-move.offsetHeight/2 ;
+      new_left < 0? new_left = 0  : new_left ;
+      /*右侧边距*/
+      new_left >(small_box.offsetWidth-move.offsetWidth) ?
+          new_left = (small_box.offsetWidth-move.offsetWidth)  : new_left ;
+      /*上侧边距*/
+      new_top < 0? new_top = 0  : new_top ;
+      /*下侧*/
+      new_top >(small_box.offsetHeight- move.offsetHeight) ? new_top =(small_box.offsetHeight-move.offsetHeight)  : new_top ;
+
+
+       move.style.left = new_left+'px';
+       move.style.top = new_top +'px';
+
+       /*条件表达式 三元表达式 */
+       /*先限制左侧边界*/
+
+       /*换算显示比例*/
+       var big_left = (big_box.offsetWidth-big_img.offsetWidth) * (new_left/(small_box.offsetWidth-move.offsetWidth));
+       var big_top = (big_box.offsetHeight-big_img.offsetHeight) * (new_top/(small_box.offsetHeight-move.offsetHeight));
+
+        big_img.style.left = big_left +'px';
+        big_img.style.top = big_top+'px';
+
+
+
+
+
+  }
+
+
+  small_box.onmouseover = function () {
+      move.style.display = 'block';
+      big_box.style.display = 'block';
+  }
+
+   small_box.onmouseout = function () {
+        move.style.display = 'none';
+        big_box.style.display = 'none';
+    }
+
+}
+</script>
+</body>
+</html>

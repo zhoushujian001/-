@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时弹出广告</title>
+    <style>
+
+        #img_idDiv {
+            width: 300px;
+            height:300px;
+            border:5px solid purple;
+            overflow: hidden;
+            display: none;
+            position: absolute;
+            bottom:0;
+            right: 0;
+
+        }
+    </style>
+</head>
+<body>
+<div id="img_idDiv" >
+    <img src="images/01.jpeg" alt="" id="adv_img" width="600" height="600">
+</div>
+
+<script>
+    window.onload = function () {
+        timer = window.setInterval('imgBlock()',2000);
+    }
+    function imgBlock() {
+        var img_idDIV = document.getElementById("img_idDiv");
+        img_idDIV.style.display = "block";
+        window.clearInterval(timer);
+        window.setInterval("imgNone()",2000);
+
+    }
+    function imgNone(){
+        var img_idDIV = document.getElementById("img_idDiv");
+        img_idDIV.style.display = "none";
+    }
+</script>
+</body>
+</html>
